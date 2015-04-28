@@ -76,7 +76,7 @@
              * also remove all complex object structures (but arrays) to avoid problems
              * with circular references and socket transmission
              */
-            } else if (typeof e[k] === 'object' && !(e[k] instanceof Array)) {
+            } else if (typeof e[k] === 'object' && !(e[k] instanceof Array) && k!=='detail') {
                 delete e[k];
             }
         }
@@ -93,7 +93,7 @@
     function transferEventData(e) {
         e = sanitize(e);
         socket.emit(socketData.eventName + '-' + socketData.elem, e);
-        socketData = null;
+        //socketData = null;
     }
 
     /**
